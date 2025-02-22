@@ -26,3 +26,26 @@ body {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
+#landing-page {
+  background-color: #1C2B5A;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#landing-btn {
+  color: #1C2B5A; 
+  border: none; 
+  box-shadow: none;
+}
+
+.h1 {
+  color: #A9C0E8;
+}
+
+#landing-header {
+  color: #A9C0E8
+}

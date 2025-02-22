@@ -1,19 +1,19 @@
 import React from 'react';
-import { Col, Container, Image, Row } from 'react-bootstrap';
+import { Button, Container, Row } from 'react-bootstrap';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
-  <Container id="landing-page" fluid className="py-3">
-    <Row className="align-middle text-center">
-      <Col xs={4}>
-        <Image roundedCircle src="/images/meteor-logo.png" width="150px" />
-      </Col>
-
-      <Col xs={8} className="d-flex flex-column justify-content-center">
-        <h1>Welcome to this template</h1>
-        <p>Now get to work and modify this app!</p>
-      </Col>
-
+  <Container id="landing-page" fluid className="vh-100 vw-100">
+    <Row id="landing-header" className="align-middle text-center">
+      <h1 className="fw-bold">Ancient AI</h1>
+    </Row>
+    <div className="d-flex gap-3 mt-3">
+      <Button id="landing-btn" className="btn" style={{ backgroundColor: '#F99D3D' }}>Upload</Button>
+      <Button id="landing-btn" className="btn" style={{ backgroundColor: '#1FA378' }}>Database</Button>
+      <Button id="landing-btn" className="btn" style={{ backgroundColor: '#FFC914' }}>Models</Button>
+    </div>
+    <Row className="position-absolute bottom-0 end-0 p-3">
+      <span className="text-light">POWERED BY <b className="text-white">TRANSKRIBUS</b></span>
     </Row>
   </Container>
 );
