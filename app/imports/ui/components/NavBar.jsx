@@ -13,38 +13,38 @@ const NavBar = () => {
   }), []);
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar id="navbar" fluid expand="lg">
       <Container>
-        <Navbar.Brand as={NavLink} to="/">
-          <h2>meteor-application-template-react</h2>
+        <Navbar.Brand id="navbar-header" as={NavLink} to="/">
+          <h2>Ancient AI</h2>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle id="navbar-toggle" aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
             {currentUser ? ([
-              <Nav.Link id="add-stuff-nav" as={NavLink} to="/add" key="add">Add Stuff</Nav.Link>,
-              <Nav.Link id="list-stuff-nav" as={NavLink} to="/list" key="list">List Stuff</Nav.Link>,
+              <Nav.Link id="add-stuff-nav" as={NavLink} to="/add" key="add" style={{ color: '#A9C0E8' }}>Add Stuff</Nav.Link>,
+              <Nav.Link id="list-stuff-nav" as={NavLink} to="/list" key="list" style={{ color: '#A9C0E8' }}>List Stuff</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link id="list-stuff-admin-nav" as={NavLink} to="/admin" key="admin">Admin</Nav.Link>
+              <Nav.Link id="list-stuff-admin-nav" as={NavLink} to="/admin" key="admin" style={{ color: '#A9C0E8' }}>Admin</Nav.Link>
             ) : ''}
           </Nav>
-          <Nav className="justify-content-end">
+          <Nav id="navbar" className="justify-content-end">
             {currentUser === '' ? (
-              <NavDropdown id="login-dropdown" title="Login">
-                <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to="/signin">
+              <NavDropdown id="login-dropdown" title="Login" style={{ color: '#A9C0E8' }}>
+                <NavDropdown.Item id="login-dropdown-sign-in" as={NavLink} to="/signin" style={{ color: '#14224A' }}>
                   <PersonFill />
                   Sign
                   in
                 </NavDropdown.Item>
-                <NavDropdown.Item id="login-dropdown-sign-up" as={NavLink} to="/signup">
+                <NavDropdown.Item id="login-dropdown-sign-up" as={NavLink} to="/signup" style={{ color: '#14224A' }}>
                   <PersonPlusFill />
                   Sign
                   up
                 </NavDropdown.Item>
               </NavDropdown>
             ) : (
-              <NavDropdown id="navbar-current-user" title={currentUser}>
+              <NavDropdown id="navbar-current-user" title={currentUser} style={{ color: '#14224A' }}>
                 <NavDropdown.Item id="navbar-sign-out" as={NavLink} to="/signout">
                   <BoxArrowRight />
                   {' '}

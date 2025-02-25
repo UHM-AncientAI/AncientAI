@@ -5,6 +5,7 @@
 :root {
   --matr-navbar-bg: #ECECEC;
   --matr-navbar-bg-rgb: 236, 236, 236;
+  width: 100%;
 }
 
 /* Change bootstrap variable values.
@@ -27,6 +28,10 @@ body {
   padding-bottom: 20px;
 }
 
+#login-dropdown {
+  color: #A9C0E8;
+}
+
 #landing-page {
   background-color: #1C2B5A;
   color: white;
@@ -34,6 +39,9 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 100vw;  /* Full viewport width */
+  height: 100vh;
+  overflow: hidden;
 }
 
 #landing-btn {
@@ -42,10 +50,28 @@ body {
   box-shadow: none;
 }
 
-.h1 {
+#landing-header {
+  color: #A9C0E8;
+  font-size: 4rem;
+  scale: 2;
+}
+
+#navbar, #footer {
+  background-color: #14224A;
   color: #A9C0E8;
 }
 
-#landing-header {
-  color: #A9C0E8
+#navbar-header {
+  color: #A9C0E8;
+  font-weight: bold;
+}
+
+#navbar-toggle {
+  border-color: #A9C0E8;
+  background-color: #A9C0E8;
+  outline-color: #A9C0E8;
+}
+
+#navbar-link {
+  color: #A9C0E8;
 }
