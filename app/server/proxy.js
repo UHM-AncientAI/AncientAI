@@ -15,16 +15,18 @@ const API_KEY = 'trial-c91a5dc713cede569faddf9cd8d47057';
 app.post('/ocr', async (req, res) => {
   try {
     const image = req.body.image;
-    if (!image) return res.status(400).json({ error: 'No image provided' });
+    if (!image) {
+      return res.status(400).json({ error: 'No image provided' });
+    }
 
     const response = await axios.post(API_URL, image, {
       headers: { 'API-Key': API_KEY, 'Content-Type': 'multipart/form-data' },
     });
 
-    res.json(response.data);
+    return res.json(response.data);
   } catch (error) {
     console.error('Error:', error.response?.data || error.message);
-    res.status(500).json({ error: 'OCR request failed' });
+    return res.status(500).json({ error: 'OCR request failed' });
   }
 });
 
