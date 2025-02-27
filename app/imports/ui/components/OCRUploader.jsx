@@ -30,7 +30,7 @@ const OCRUploader = () => {
   return (
     <div>
       <input type="file" accept="image/*" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload & Transcribe</button>
+      <button type="button" onClick={handleUpload}>Upload & Transcribe</button>
       {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
     </div>
   );
