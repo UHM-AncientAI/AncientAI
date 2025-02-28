@@ -1,13 +1,39 @@
 {
   "defaultAccounts": [
     { "email": "admin@foo.com", "password": "changeme", "role": "admin" },
-    { "email": "john@foo.com", "password": "changeme" }
+    { "email": "john@foo.com", "password": "changeme" },
+    { "email": "doe@foo.com", "password": "changeme" }
   ],
 
   "defaultData": [
-    { "name": "Basket", "quantity": 3, "owner": "john@foo.com", "condition": "excellent" },
-    { "name": "Bicycle", "quantity": 2, "owner": "john@foo.com", "condition": "poor" },
-    { "name": "Banana", "quantity": 2, "owner": "admin@foo.com", "condition": "good" },
-    { "name": "Boogie Board", "quantity": 2, "owner": "admin@foo.com", "condition": "excellent" }
+    { "title": "Ponape Ebon Home Leave",
+    "description": "From Doane journals. Recollections of Ponape in Ebon.",
+    "pages": 4,
+    "timePeriod": "ET 1855-1865",
+    "authors": "Doane",
+    "location": "Ebon, Marshall Islands",
+    "owner": "admin@foo.com"},
+    { "title": "Doane Misc.",
+    "description": "Parts of his journal/letters.",
+    "pages": 3,
+    "timePeriod": "ET 1855-1865",
+    "authors": "Doane",
+    "location": "Ebon, Marshall Islands",
+    "owner": "admin@foo.com"},
+    { "title": "Micronesian Missions",
+    "description": "Multiple journals from different missionaries.",
+    "pages": 7,
+    "timePeriod": "1871-1873",
+    "authors": "Whitney, J.F, Louisa",
+    "location": "Ebon, Marshall Islands",
+    "owner": "admin@foo.com"},
+    { "title": "Morning Star",
+    "description": "Pages that mention the Morning Star",
+    "pages": 4,
+    "timePeriod": "1855-1873",
+    "authors": "Doane, Whitney, J.F, Louisa",
+    "location": "Marshall Islands",
+    "owner": "admin@foo.com"}
   ]
+
 }
