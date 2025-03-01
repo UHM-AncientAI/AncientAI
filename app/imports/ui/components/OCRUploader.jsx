@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 
-const OCRUploader = () => {
-
+const OCRUploader = ({ onTranscriptionComplete }) => {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [result, setResult] = useState(null);
   const [plainText, setPlainText] = useState('');
   const [error, setError] = useState(null);
 
@@ -42,7 +40,6 @@ const OCRUploader = () => {
             return;
           }
 
-          setResult(result);
           console.log(result);
 
           // Extract plain text from result
@@ -52,13 +49,12 @@ const OCRUploader = () => {
               .join('\n');
 
             setPlainText(extractedText);
+            console.log(extractedText);
 
-            // Store text in Meteor collection
-            Meteor.call('transcriptions.insert', extractedText, file.name, (err) => {
-              if (err) {
-                console.error('Error saving transcription:', err);
-              }
-            });
+            // Call the callback with the extracted text
+            if (onTranscriptionComplete) {
+              onTranscriptionComplete(extractedText);
+            }
           }
         });
       };
@@ -78,42 +74,49 @@ const OCRUploader = () => {
   };
 
   return (
-    <div>
-      <h2>OCR Document Upload</h2>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-        />
+    <div className="ocr-uploader mb-4">
+      <form onSubmit={handleSubmit} className="mb-3">
+        <div className="mb-3">
+          <input
+            type="file"
+            className="form-control"
+            accept="image/*"
+            onChange={handleFileChange}
+          />
+        </div>
         <button
           type="submit"
+          className="btn btn-primary"
           disabled={isLoading || !file}
         >
           {isLoading ? 'Processing...' : 'Transcribe Document'}
         </button>
       </form>
 
-      {error && <div className="error">{error}</div>}
+      {error && <div className="alert alert-danger">{error}</div>}
 
       {plainText && (
-        <div className="result">
-          <h3>Transcription:</h3>
-          <div className="text-content">{plainText.split('\n').map((line, i) => (
-            <p key={i}>{line}</p>
-          ))}
+        <div className="card mt-3">
+          <div className="card-header">
+            <h5 className="mb-0">Transcription Preview</h5>
           </div>
-
-          <button
-            type="button"
-            onClick={() => {
-              navigator.clipboard.writeText(plainText);
-              alert('Text copied to clipboard!');
-            }}
-          >
-            Copy Text
-          </button>
+          <div className="card-body">
+            <div className="text-content">
+              {plainText.split('\n').map((line, i) => (
+                <p key={i} className="mb-1">{line}</p>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="btn btn-sm btn-secondary mt-2"
+              onClick={() => {
+                navigator.clipboard.writeText(plainText);
+                alert('Text copied to clipboard!');
+              }}
+            >
+              Copy Text
+            </button>
+          </div>
         </div>
       )}
     </div>
