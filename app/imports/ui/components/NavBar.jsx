@@ -13,7 +13,7 @@ const NavBar = () => {
   }), []);
 
   return (
-    <Navbar id="navbar" fluid expand="lg">
+    <Navbar id="navbar" fluid="true" expand="lg">
       <Container>
         <Navbar.Brand id="navbar-header" as={NavLink} to="/">
           <h2>Ancient AI</h2>

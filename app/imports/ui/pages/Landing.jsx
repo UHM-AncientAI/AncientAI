@@ -9,14 +9,16 @@ const Landing = () => (
       <h1 className="fw-bold">Ancient AI</h1>
     </Row>
     <div className="d-flex gap-3 mt-3">
-      <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#F99D3D' }}>Upload</Button>
+      <Link to="/uploadfile">
+        <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#F99D3D' }}>Upload</Button>
+      </Link>
       <Link to="/database">
         <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#1FA378' }}>Database</Button>
       </Link>
       <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#FFC914' }}>Models</Button>
     </div>
     <Row className="align-self-end position-absolute bottom-0 end-0 mb-3 me-3">
-      <p className="text-light">POWERED BY <b className="text-white">TRANSKRIBUS</b></p>
+      <p className="text-light">POWERED BY <b className="text-white">OCELUS</b></p>
     </Row>
   </Container>
 );
