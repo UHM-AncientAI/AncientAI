@@ -6,6 +6,7 @@
   --matr-navbar-bg: #ECECEC;
   --matr-navbar-bg-rgb: 236, 236, 236;
   width: 100%;
+  background-color: #FFF8ED;
 }
 
 /* Change bootstrap variable values.
@@ -13,6 +14,7 @@
  */
 body {
   --bs-light-rgb: var(--matr-navbar-bg-rgb);
+  background-color: #FFF8ED;
 }
 
 /* Set the alert background on the signin and signup pages. */
@@ -32,6 +34,7 @@ body {
   color: #A9C0E8;
 }
 
+/* Landing Page */
 #landing-page {
   background-color: #1C2B5A;
   color: white;
@@ -56,6 +59,7 @@ body {
   scale: 2;
 }
 
+/* Navbar + Footer */
 #navbar, #footer {
   background-color: #14224A;
   color: #A9C0E8;
@@ -74,4 +78,69 @@ body {
 
 #navbar-link {
   color: #A9C0E8;
+}
+
+/* Database Page */
+#database-page {
+  background-color: #FFFFFF;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+#section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  background-color: #D9D9D9;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+#sidebar-filters {
+  background-color: #A9C0E8;
+  border-radius: 20px;
+  flex: 1;
+  min-width: 250px;
+  padding: 10px;
+}
+
+#search-bar {
+  width: 250px;
+  border-radius: 20px;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  transition: 0.3s ease-in-out;
+  background-color: #F8F6F1;
+}
+
+#search-bar:focus {
+  outline: none;
+  border-color: #1C2B5A;
+  box-shadow: 0 0 8px rgba(28, 43, 90, 0.2);
+}
+
+#text-center {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #888;
+}
+
+#collection-card {
+  background-color: #FFF3E6;
+  border: none;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+#collection-header {
+  background-color: #1C2B5A;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+#collection-details {
+  font-size: 0.9rem;
+  color: #333;
 }

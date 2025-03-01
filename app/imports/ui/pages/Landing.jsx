@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => (
@@ -9,7 +10,9 @@ const Landing = () => (
     </Row>
     <div className="d-flex gap-3 mt-3">
       <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#F99D3D' }}>Upload</Button>
-      <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#1FA378' }}>Database</Button>
+      <Link to="/database">
+        <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#1FA378' }}>Database</Button>
+      </Link>
       <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#FFC914' }}>Models</Button>
     </div>
     <Row className="align-self-end position-absolute bottom-0 end-0 mb-3 me-3">
