@@ -13,10 +13,10 @@ class TranscriptionsCollection {
     this.collection = new Mongo.Collection(this.name);
     // Define the structure of each document in the collection.
     this.schema = new SimpleSchema({
-      title: String,
+      title: String, // of the document
       author: String,
       year: Number,
-      text: String,
+      text: String, // the actual transcription
     });
     // Attach the schema to the collection, so all attempts to insert a document are checked against schema.
     this.collection.attachSchema(this.schema);
