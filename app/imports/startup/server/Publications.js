@@ -1,7 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Stuffs } from '../../api/stuff/Stuff';
-import { Collections } from '../../api/collections/Collections';
+import { Database } from '../../api/database/Database';
+import { Transcriptions } from '../../api/transcription/Transcription';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
@@ -13,10 +14,18 @@ Meteor.publish(Stuffs.userPublicationName, function () {
   return this.ready();
 });
 
-Meteor.publish(Collections.userPublicationName, function () {
+Meteor.publish(Database.userPublicationName, function () {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
-    return Collections.collection.find({ owner: username });
+    return Database.collection.find({ owner: username });
+  }
+  return this.ready();
+});
+
+Meteor.publish(Transcriptions.userPublicationName, function () {
+  if (this.userId) {
+    const username = Meteor.users.findOne(this.userId).username;
+    return Transcriptions.collection.find({ owner: username });
   }
   return this.ready();
 });
@@ -30,9 +39,16 @@ Meteor.publish(Stuffs.adminPublicationName, function () {
   return this.ready();
 });
 
-Meteor.publish(Collections.adminPublicationName, function () {
+Meteor.publish(Database.adminPublicationName, function () {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Collections.collection.find();
+    return Database.collection.find();
+  }
+  return this.ready();
+});
+
+Meteor.publish(Transcriptions.adminPublicationName, function () {
+  if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
+    return Transcriptions.collection.find();
   }
   return this.ready();
 });
