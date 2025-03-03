@@ -5,8 +5,9 @@ import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import swal from 'sweetalert';
 import { Meteor } from 'meteor/meteor';
+// import { useTracker } from 'meteor/react-meteor-data';
 import OCRUploader from '../components/OCRUploader';
-import { Transcriptions } from '../../api/transcription/Transcriptions';
+import { Transcriptions } from '../../api/transcription/Transcription';
 
 // Create a schema to specify the structure of the data to appear in the form.
 const formSchema = new SimpleSchema({
@@ -65,8 +66,8 @@ const UploadFile = () => {
             ref={ref => { fRef = ref; }}
             schema={bridge}
             onSubmit={data => submit(data, fRef)}
-            model={formData}
-            onChange={(model) => setFormData(model)}
+            // model={formData}
+            // onChange={(model) => setFormData(model)}
           >
             <Card>
               <Card.Body>

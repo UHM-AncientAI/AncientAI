@@ -8,7 +8,19 @@ const OCRUploader = ({ onTranscriptionComplete }) => {
   const [error, setError] = useState(null);
 
   const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+    const selectedFile = e.target.files[0];
+
+    // Validate file type
+    if (selectedFile) {
+      const fileType = selectedFile.type;
+      if (!fileType.match('image/(jpeg|jpg|png)') && fileType !== 'application/pdf') {
+        setError('Please upload only image files (PNG, JPG) or PDF files');
+        setFile(null);
+        return;
+      }
+    }
+
+    setFile(selectedFile);
     setError(null);
   };
 
@@ -32,7 +44,7 @@ const OCRUploader = ({ onTranscriptionComplete }) => {
         const base64String = event.target.result.split(',')[1];
 
         // Call server method with base64 string
-        Meteor.call('ocelus.transcribe', base64String, file.name, (err, result) => {
+        Meteor.call('ocelus.transcribe', base64String, file.name, file.type, (err, result) => {
           setIsLoading(false);
 
           if (err) {
@@ -80,7 +92,7 @@ const OCRUploader = ({ onTranscriptionComplete }) => {
           <input
             type="file"
             className="form-control"
-            accept="image/*"
+            accept="image/*,application/pdf"
             onChange={handleFileChange}
           />
         </div>
