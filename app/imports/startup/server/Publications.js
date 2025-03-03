@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Roles } from 'meteor/alanning:roles';
 import { Stuffs } from '../../api/stuff/Stuff';
-import { Database } from '../../api/database/Database';
+import { Collections } from '../../api/collections/Collections';
 
 // User-level publication.
 // If logged in, then publish documents owned by this user. Otherwise, publish nothing.
@@ -13,10 +13,10 @@ Meteor.publish(Stuffs.userPublicationName, function () {
   return this.ready();
 });
 
-Meteor.publish(Database.userPublicationName, function () {
+Meteor.publish(Collections.userPublicationName, function () {
   if (this.userId) {
     const username = Meteor.users.findOne(this.userId).username;
-    return Database.collection.find({ owner: username });
+    return Collections.collection.find({ owner: username });
   }
   return this.ready();
 });
@@ -30,9 +30,9 @@ Meteor.publish(Stuffs.adminPublicationName, function () {
   return this.ready();
 });
 
-Meteor.publish(Database.adminPublicationName, function () {
+Meteor.publish(Collections.adminPublicationName, function () {
   if (this.userId && Roles.userIsInRole(this.userId, 'admin')) {
-    return Database.collection.find();
+    return Collections.collection.find();
   }
   return this.ready();
 });
