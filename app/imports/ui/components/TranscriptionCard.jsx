@@ -4,16 +4,18 @@ import { Card } from 'react-bootstrap';
 
 const TranscriptionCard = ({ title, description, image, year, author }) => (
   <Card className="shadow-sm border-0">
-    <Card.Header className="bg-primary text-white fw-bold text-uppercase">
+    <Card.Header id="trans-header">
       {title}
     </Card.Header>
     <Card.Body>
       <h6 className="fw-bold">{description}</h6>
       <p>1 page</p>
-      <img src={image} alt="Handwritten document" className="img-fluid mb-2 rounded" />
       <p className="text-muted">
-        {year} <br /> {author}
+        Time Period: {year} <br /> Authors: {author}
       </p>
+      <div className="image-container">
+        <img src={image} alt="Handwritten document" />
+      </div>
     </Card.Body>
   </Card>
 );

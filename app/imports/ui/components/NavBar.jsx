@@ -22,11 +22,11 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto justify-content-start">
             {currentUser ? ([
-              <Nav.Link id="add-stuff-nav" as={NavLink} to="/add" key="add" style={{ color: '#A9C0E8' }}>Add Stuff</Nav.Link>,
-              <Nav.Link id="list-stuff-nav" as={NavLink} to="/list" key="list" style={{ color: '#A9C0E8' }}>List Stuff</Nav.Link>,
+              <Nav.Link id="add-stuff-nav" as={NavLink} to="/uploadfile" key="add" style={{ color: '#A9C0E8' }}>Upload</Nav.Link>,
+              <Nav.Link id="list-stuff-nav" as={NavLink} to="/database" key="list" style={{ color: '#A9C0E8' }}>Database</Nav.Link>,
             ]) : ''}
             {Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              <Nav.Link id="list-stuff-admin-nav" as={NavLink} to="/admin" key="admin" style={{ color: '#A9C0E8' }}>Admin</Nav.Link>
+              <Nav.Link id="list-stuff-admin-nav" as={NavLink} to="/admin" key="admin" style={{ color: '#A9C0E8' }} />
             ) : ''}
           </Nav>
           <Nav id="navbar" className="justify-content-end">
