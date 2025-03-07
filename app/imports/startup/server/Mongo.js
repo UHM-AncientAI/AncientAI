@@ -1,22 +1,22 @@
 import { Meteor } from 'meteor/meteor';
-import { Database } from '../../api/database/Database.js';
+import { Collections } from '../../api/collections/Collections.js';
 
 /* eslint-disable no-console */
 
-// Initialize the database with a default data document.
+// Initialize the Collections with a default data document.
 const addData = (data) => {
   console.log(`  Adding: ${data.title} (${data.owner})`);
-  Database.collection.insert(data);
+  Collections.collection.insert(data);
 };
 
-if (Database.collection.find().count() === 0) {
+if (Collections.collection.find().count() === 0) {
   if (Meteor.settings.defaultData) {
-    console.log('Creating default data for database.');
+    console.log('Creating default data for Collections.');
     Meteor.settings.defaultData.forEach(data => addData(data));
   }
 } else {
-  console.log('Resetting database and inserting default data...');
-  Database.collection.remove({});
+  console.log('Resetting Collections and inserting default data...');
+  Collections.collection.remove({});
 
   // **Insert default data if available in settings**
   if (Meteor.settings.defaultData && Array.isArray(Meteor.settings.defaultData)) {

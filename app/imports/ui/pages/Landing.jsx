@@ -15,7 +15,7 @@ const Landing = () => (
       <Link to="/database">
         <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#1FA378' }}>Database</Button>
       </Link>
-      <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#FFC914' }}>Models</Button>
+      {/* <Button id="landing-btn" className="btn btn-lg" style={{ backgroundColor: '#FFC914' }}>Models</Button> */}
     </div>
     <Row className="align-self-end position-absolute bottom-0 end-0 mb-3 me-3">
       <p className="text-light">POWERED BY <b className="text-white">OCELUS</b></p>

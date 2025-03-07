@@ -42,7 +42,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100vw;  /* Full viewport width */
+  width: 100vw;
   height: 100vh;
   overflow: hidden;
 }
@@ -87,18 +87,27 @@ body {
   padding: 20px;
 }
 
-#section-title {
+#database-navbar {
   font-size: 1.5rem;
   font-weight: bold;
-  background-color: #D9D9D9;
-  padding: 20px;
-  border-radius: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
 }
+
+#database-navbar-links {
+  color: #555555;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+#database-navbar-links:active {
+  background-color: #e9ecef;
+}
+
 
 #sidebar-filters {
   background-color: #A9C0E8;
   border-radius: 20px;
-  flex: 1;
   min-width: 250px;
   padding: 10px;
 }
@@ -124,6 +133,7 @@ body {
   color: #888;
 }
 
+/* Collections Page */
 #collection-card {
   background-color: #FFF3E6;
   border: none;
@@ -144,3 +154,27 @@ body {
   font-size: 0.9rem;
   color: #333;
 }
+
+/* Transcribed Pages Card */
+
+#trans-header {
+  background-color: #1C2B5A;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px 10px 0 0;
+}
+
+.image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.image-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: top;
+}
+
