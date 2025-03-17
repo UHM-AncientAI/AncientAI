@@ -15,7 +15,10 @@ class TranscriptionsCollection {
     this.schema = new SimpleSchema({
       title: String,
       author: String,
-      year: Number,
+      date:
+          { type: Date,
+            label: 'Date',
+          },
       text: String,
       owner: String,
       createdAt: {

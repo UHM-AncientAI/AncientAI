@@ -8,10 +8,24 @@ const SortDropdown = ({ handleSortChange }) => (
     <Dropdown as={ButtonGroup}>
       <Dropdown.Toggle variant="secondary">Sort By</Dropdown.Toggle>
       <Dropdown.Menu>
-        <Dropdown.Item onClick={() => handleSortChange('title-asc')}>Title (A-Z)</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSortChange('title-desc')}>Title (Z-A)</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSortChange('authors-asc')}>Authors (A-Z)</Dropdown.Item>
-        <Dropdown.Item onClick={() => handleSortChange('authors-desc')}>Authors (Z-A)</Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSortChange('title-asc')}>
+          Title (A-Z)
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSortChange('title-desc')}>
+          Title (Z-A)
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSortChange('author-asc')}>
+          Author (A-Z)
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSortChange('author-desc')}>
+          Author (Z-A)
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSortChange('date-asc')}>
+          Date (Oldest First)
+        </Dropdown.Item>
+        <Dropdown.Item onClick={() => handleSortChange('date-desc')}>
+          Date (Newest First)
+        </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   </Col>

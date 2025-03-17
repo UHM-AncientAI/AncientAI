@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, Col, Container, Row } from 'react-bootstrap';
-import { AutoForm, ErrorsField, NumField, SubmitField, TextField, LongTextField } from 'uniforms-bootstrap5';
+import { AutoForm, ErrorsField, NumField, SubmitField, DateField, TextField, LongTextField } from 'uniforms-bootstrap5';
 import SimpleSchema from 'simpl-schema';
 import SimpleSchema2Bridge from 'uniforms-bridge-simple-schema-2';
 import swal from 'sweetalert';
@@ -13,7 +13,11 @@ import { Transcriptions } from '../../api/transcription/Transcription';
 const formSchema = new SimpleSchema({
   title: String,
   author: String,
-  year: Number,
+  date: {
+    type: Date,
+    label: 'Date',
+    defaultValue: new Date(new Date().setHours(14, 1, 0, 0)),
+  },
   text: String,
 });
 
@@ -24,7 +28,7 @@ const UploadFile = () => {
   const [formData, setFormData] = useState({
     title: '',
     author: '',
-    year: '',
+    date: '',
     text: '',
   });
 
@@ -38,10 +42,10 @@ const UploadFile = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, author, year, text } = data;
+    const { title, author, date, text } = data;
     const owner = Meteor.user().username;
     Transcriptions.collection.insert(
-      { title, author, year, text, owner },
+      { title, author, date, text, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -73,7 +77,7 @@ const UploadFile = () => {
               <Card.Body>
                 <TextField name="title" />
                 <TextField name="author" />
-                <NumField name="year" decimal={null} />
+                <DateField name="date" />
                 <LongTextField name="text" rows={8} />
                 <SubmitField value="Submit" className="mt-3" />
                 <ErrorsField />

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'react-bootstrap';
 
-const TranscriptionCard = ({ title, description, image, year, author }) => (
+const TranscriptionCard = ({ title, description, date, author }) => (
   <Card className="shadow-sm border-0">
     <Card.Header id="trans-header">
       {title}
@@ -11,11 +11,8 @@ const TranscriptionCard = ({ title, description, image, year, author }) => (
       <h6 className="fw-bold">{description}</h6>
       <p>1 page</p>
       <p className="text-muted">
-        Time Period: {year} <br /> Authors: {author}
+        Date: {date} <br /> Authors: {author}
       </p>
-      <div className="image-container">
-        <img src={image} alt="Handwritten document" />
-      </div>
     </Card.Body>
   </Card>
 );
@@ -23,8 +20,7 @@ const TranscriptionCard = ({ title, description, image, year, author }) => (
 TranscriptionCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  year: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };
 
