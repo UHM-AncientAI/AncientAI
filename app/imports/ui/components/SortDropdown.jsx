@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Dropdown, ButtonGroup, Col } from 'react-bootstrap';
 
 const SortDropdown = ({ handleSortChange }) => (
-  <Col className="text-end">
+  <Col>
     <Dropdown as={ButtonGroup}>
       <Dropdown.Toggle variant="secondary">Sort By</Dropdown.Toggle>
       <Dropdown.Menu>
