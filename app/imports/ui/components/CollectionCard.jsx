@@ -13,8 +13,8 @@ const CollectionCard = ({ collection }) => (
           <br />
         </Card.Text>
         <p id="collection-details">
-          <b>Time Period:</b> {collection.timePeriod} <br />
-          <b>Authors:</b> {collection.authors} <br />
+          <b>Time Period:</b> {collection.startYear} - {collection.endYear || 'Present'} <br />
+          <b>Authors:</b> {collection.authors || 'Unknown'} <br />
           <b>Location:</b> {collection.location}
         </p>
       </Card.Body>
@@ -26,7 +26,8 @@ CollectionCard.propTypes = {
   collection: PropTypes.shape({
     title: PropTypes.string.isRequired,
     description: PropTypes.string,
-    timePeriod: PropTypes.string,
+    startYear: PropTypes.number,
+    endYear: PropTypes.number,
     authors: PropTypes.string,
     location: PropTypes.string,
   }).isRequired,

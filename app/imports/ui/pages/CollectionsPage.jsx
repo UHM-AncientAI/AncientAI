@@ -14,8 +14,9 @@ import SortDropdown from '../components/SortDropdown';
 
 const formSchema = new SimpleSchema({
   title: String,
-  description: String,
-  timePeriod: String,
+  description: { type: String, optional: true },
+  startYear: String,
+  endYear: { type: String, optional: true },
   authors: String,
   location: String,
 });
@@ -36,7 +37,7 @@ const CollectionsPage = () => {
   const [filters, setFilters] = useState({
     title: true,
     authors: true,
-    timePeriod: true,
+    years: true,
     location: true,
   });
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
@@ -49,10 +50,10 @@ const CollectionsPage = () => {
 
   // On submit, insert the data.
   const submit = (data, formRef) => {
-    const { title, description, timePeriod, authors, location, transcriptions } = data;
+    const { title, description, startYear, endYear, authors, location } = data;
     const owner = Meteor.user().username;
     Collections.collection.insert(
-      { title, description, timePeriod, authors, location, owner, transcriptions },
+      { title, description, startYear, endYear, authors, location, owner },
       (error) => {
         if (error) {
           swal('Error', error.message, 'error');
@@ -66,22 +67,40 @@ const CollectionsPage = () => {
 
   let fRef = null;
 
-  // Filter and sort logic (unchanged)
   const filteredCollections = collections.filter((collection) => {
     const keywords = searchTerm.toLowerCase().split(/\s+/).filter(Boolean);
     if (keywords.length === 0) return true;
+
     const containsAllKeywords = (field) => keywords.every((keyword) => field.toLowerCase().includes(keyword));
+
     return (
       (filters.title && containsAllKeywords(collection.title)) ||
       (filters.authors && containsAllKeywords(collection.authors)) ||
-      (filters.timePeriod && containsAllKeywords(collection.timePeriod)) ||
+      (filters.years && containsAllKeywords(
+        `${collection.startYear}-${collection.endYear || 'Present'}`,
+      )) ||
       (filters.location && containsAllKeywords(collection.location))
     );
   });
 
   const sortedCollections = [...filteredCollections].sort((a, b) => {
     const [field, direction] = sortOrder.split('-');
-    return a[field].localeCompare(b[field]) * (direction === 'asc' ? 1 : -1);
+
+    if (field === 'title') {
+      return (a.title || '').localeCompare(b.title || '') * (direction === 'asc' ? 1 : -1);
+    }
+
+    if (field === 'author') {
+      return (a.authors || '').localeCompare(b.authors || '') * (direction === 'asc' ? 1 : -1);
+    }
+
+    if (field === 'date') {
+      const startA = a.startYear ?? 9999; // Default missing years to 9999 (pushed to end)
+      const startB = b.startYear ?? 9999;
+      return (startA - startB) * (direction === 'asc' ? 1 : -1);
+    }
+
+    return 0; // Default case (no sorting)
   });
 
   return (
@@ -129,11 +148,12 @@ const CollectionsPage = () => {
           <AutoForm ref={ref => { fRef = ref; }} schema={bridge} onSubmit={data => submit(data, fRef)}>
             <Card>
               <Card.Body>
-                <TextField name="title" />
-                <TextField name="description" />
-                <TextField name="timePeriod" />
-                <TextField name="authors" />
-                <TextField name="location" />
+                <TextField name="title" placeholder="Example: Journal Collections" />
+                <TextField name="description" placeholder="Example: Collection of journals." />
+                <TextField name="startYear" placeholder="Example: 1885" />
+                <TextField name="endYear" placeholder="Example: 1890" />
+                <TextField name="authors" placeholder="Example: Doane" />
+                <TextField name="location" placeholder="Example: Marshall Islands" />
                 <SubmitField value="Submit" />
                 <ErrorsField />
               </Card.Body>

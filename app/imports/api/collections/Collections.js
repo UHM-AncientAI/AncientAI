@@ -15,7 +15,8 @@ class CollectionsDatabase {
     this.schema = new SimpleSchema({
       title: String,
       description: String,
-      timePeriod: String,
+      startYear: Number,
+      endYear: { type: Number, optional: true },
       authors: String,
       location: String,
       owner: String,

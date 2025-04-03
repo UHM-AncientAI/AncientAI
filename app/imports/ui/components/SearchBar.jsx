@@ -12,6 +12,7 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => (
         id="search-bar"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
+        style={{ width: '100%' }}
       />
     </Col>
   </Row>
