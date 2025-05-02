@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Button, Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useTracker } from 'meteor/react-meteor-data';
 import { Meteor } from 'meteor/meteor';
+import { useNavigate } from 'react-router-dom';
 import { Transcriptions } from '../../api/transcription/Transcription';
 import SearchBar from '../components/SearchBar';
 import Filter from '../components/Filter';
@@ -58,6 +59,11 @@ const TranscriptionsPage = () => {
   // Check if the current sort field is 'date'
   const isDateSort = sortOrder.split('-')[0] === 'date';
 
+  const navigate = useNavigate();
+  const handleAddTranscription = () => {
+    navigate('/uploadfile');
+  };
+
   if (!ready) {
     return (
       <Container fluid className="py-4">
@@ -81,6 +87,11 @@ const TranscriptionsPage = () => {
           <Row className="mb-3">
             <Col>
               <SortDropdown handleSortChange={handleSortChange} />
+            </Col>
+            <Col className="d-flex justify-content-end">
+              <Button variant="primary" onClick={handleAddTranscription}>
+                Add Transcription
+              </Button>
             </Col>
           </Row>
           {isDateSort ? (

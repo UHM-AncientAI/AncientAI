@@ -128,8 +128,23 @@ const CollectionsPage = () => {
           ) : (
             <Row>
               {sortedCollections.length > 0 ? (
-                sortedCollections.map((collection, index) => (
-                  <CollectionCard key={index} collection={collection} />
+                sortedCollections.map((collection) => (
+                  <CollectionCard
+                    key={collection._id}
+                    collection={collection}
+                    onUpdate={(updatedCollection) => {
+                      Collections.collection.update(collection._id, {
+                        $set: {
+                          title: updatedCollection.title,
+                          description: updatedCollection.description,
+                          startYear: updatedCollection.startYear,
+                          endYear: updatedCollection.endYear,
+                          authors: updatedCollection.authors,
+                          location: updatedCollection.location,
+                        },
+                      });
+                    }}
+                  />
                 ))
               ) : (
                 <p className="text-center mt-4">No collections found.</p>

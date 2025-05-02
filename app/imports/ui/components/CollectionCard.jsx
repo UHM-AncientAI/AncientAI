@@ -1,5 +1,5 @@
 // components/CollectionCard.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Card, Col, Button, Form } from 'react-bootstrap';
 
@@ -16,6 +16,11 @@ const CollectionCard = ({ collection, onUpdate }) => {
     onUpdate(editedCollection);
     setIsEditing(false);
   };
+
+  // Inside your component:
+  useEffect(() => {
+    setEditedCollection({ ...collection });
+  }, [collection]);
 
   return (
     <Col md={4} className="mb-4">
@@ -81,17 +86,17 @@ const CollectionCard = ({ collection, onUpdate }) => {
                 />
               </Form.Group>
               <Button variant="success" size="sm" onClick={handleSave}>Save</Button>{' '}
-              <Button variant="secondary" size="sm" onClick={() => setIsEditing(false)}>Cancel</Button>
+              <Button variant="secondary" size="sm" onClick={() => setIsEditing(false)}>Close</Button>
             </>
           ) : (
             <>
               <Card.Text>
-                <strong>{collection.description}</strong>
+                <strong>{editedCollection.description}</strong>
               </Card.Text>
               <p id="collection-details">
-                <b>Time Period:</b> {collection.startYear} - {collection.endYear || 'Present'} <br />
-                <b>Authors:</b> {collection.authors || 'Unknown'} <br />
-                <b>Location:</b> {collection.location}
+                <b>Time Period:</b> {editedCollection.startYear} - {editedCollection.endYear || 'Present'} <br />
+                <b>Authors:</b> {editedCollection.authors || 'Unknown'} <br />
+                <b>Location:</b> {editedCollection.location}
               </p>
               <Button variant="primary" size="sm" onClick={() => setIsEditing(true)}>
                 Edit
